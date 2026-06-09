@@ -1,152 +1,179 @@
-\# Sales Agent Backend
+# Sales Agent Backend
 
+A FastAPI-based Sales Agent Backend with memory storage, product catalog search, REST APIs, SQLite database integration, and Railway cloud deployment.
 
+## Features
 
-\## Overview
+* Product catalog search
+* User conversation memory
+* Chat API endpoint
+* User history retrieval
+* Memory clearing
+* Health monitoring endpoint
+* SQLite database storage
+* Railway deployment
+* Swagger API documentation
 
+---
 
+## Tech Stack
 
-This project is a FastAPI-based AI Sales Agent backend that supports:
+* Python
+* FastAPI
+* SQLAlchemy
+* SQLite
+* Uvicorn
+* Railway
+* GitHub
 
+---
 
+## Installation
 
-\* Product catalog lookup
-
-\* User conversation memory
-
-\* SQLite database storage
-
-\* Tool calling
-
-\* Conversation history retrieval
-
-
-
-\## Features
-
-
-
-\### Product Catalog
-
-
-
-Reads products from `catalog.json` and searches plans and features.
-
-
-
-\### Memory System
-
-
-
-Stores user messages in SQLite and retrieves previous conversation history.
-
-
-
-\### API Endpoints
-
-
-
-\#### GET /
-
-
-
-Returns API status.
-
-
-
-\#### GET /health
-
-
-
-Returns health status.
-
-
-
-\#### GET /catalog
-
-
-
-Returns available plans from the catalog.
-
-
-
-\#### POST /chat/{user\_id}
-
-
-
-Stores a user message, searches the catalog, and returns matching results.
-
-
-
-\#### GET /chat/{user\_id}/history
-
-
-
-Returns conversation history for a user.
-
-
-
-\#### DELETE /chat/{user\_id}/memory
-
-
-
-Clears conversation memory for a user.
-
-
-
-\## Technologies
-
-
-
-\* Python
-
-\* FastAPI
-
-\* SQLite
-
-\* SQLAlchemy
-
-\* Pydantic
-
-
-
-\## Installation
-
-
+Clone the repository:
 
 ```bash
+git clone https://github.com/zyro079/Repository-name-sales-agent-backend.git
+cd Repository-name-sales-agent-backend
+```
 
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
-
 ```
 
-
-
-\## Run
-
-
+Run the application:
 
 ```bash
-
-python -m uvicorn main:app --reload
-
+uvicorn main:app --reload
 ```
 
-
-
-\## Swagger Documentation
-
-
-
-Open:
-
-
+The API will be available at:
 
 ```text
-
-http://127.0.0.1:8000/docs
-
+http://127.0.0.1:8000
 ```
 
+---
 
+## Deployment
 
+Railway URL:
+
+https://repository-name-sales-agent-backend-production.up.railway.app
+
+Swagger Documentation:
+
+https://repository-name-sales-agent-backend-production.up.railway.app/docs
+
+Health Endpoint:
+
+https://repository-name-sales-agent-backend-production.up.railway.app/health
+
+---
+
+## API Endpoints
+
+### Home
+
+GET /
+
+Response:
+
+```json
+{
+  "message": "Sales Agent API Running"
+}
+```
+
+### Health Check
+
+GET /health
+
+Response:
+
+```json
+{
+  "status": "healthy"
+}
+```
+
+### Catalog
+
+GET /catalog
+
+Returns available products from catalog.json.
+
+### Chat
+
+POST /chat/{user_id}
+
+Request:
+
+```json
+{
+  "message": "laptop"
+}
+```
+
+Response:
+
+```json
+{
+  "response": "I found 1 matching product(s).",
+  "memory_count": 1,
+  "catalog_results": [],
+  "eval": {
+    "groundedness": 0.9,
+    "relevance": 0.9,
+    "confidence": 0.9,
+    "flagged": false
+  }
+}
+```
+
+### User History
+
+GET /history/{user_id}
+
+Returns saved conversation history.
+
+### Clear Memory
+
+DELETE /memory/{user_id}
+
+Response:
+
+```json
+{
+  "message": "Memory cleared for user_id"
+}
+```
+
+---
+
+## Project Structure
+
+```text
+sales-agent-backend/
+│
+├── main.py
+├── database.py
+├── models.py
+├── memory.py
+├── tools.py
+├── catalog.json
+├── requirements.txt
+├── README.md
+└── sales_agent.db
+```
+
+---
+
+## Author
+
+Siraj
+
+GitHub:
+https://github.com/zyro079
